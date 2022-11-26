@@ -424,6 +424,8 @@ short getlist(char *input,vector<string> &files,string password)
 	returnif(getvers(head)>9,VTL);
 	U I dsize=freadvlq(rd),listfilesize=freadvlq(rd),mtfsize=freadvlq(rd);
 	U short res=split(rd,head,password);
+	if(res!=OK)
+	  cout<<"错误：文件损坏（建议：密码错误？）"<<endl;
 	returnif(res!=OK,res);
 	mtf=new U I[mtfsize];
 	for(int i=0;i<mtfsize;i++)
