@@ -3,7 +3,7 @@
 #include "../headerfile/dawn.hpp"
 using namespace std;
 ull pow256[8]={0,256,65536,16777216,4294967296}; 
-U int lilemap[35]={3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258,0xffff},lileeta[35]={0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0},dstmap[70],dsteta[70],*mtf;//mtf:´æ´¢×î½ü×î³£ÓÃµÄ32¸ödistance 
+U int lilemap[35]={3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258,0xffff},lileeta[35]={0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0},dstmap[70],dsteta[70],*mtf;//mtf:å­˜å‚¨æœ€è¿‘æœ€å¸¸ç”¨çš„32ä¸ªdistance 
 binarychar lengtheta,distanceeta;
 short lgbcp=0,dsbcp=0;
 ull lls,ld;
@@ -18,12 +18,12 @@ bool nodecmp(node a,node b)
 }
 void outputablock(U I distance,U I length,FILE *wt,binarychar &bc,short &num,FILE *wbs,FILE *w,U I mtfsz,bool automtf)//wt:dawn.lile&dst2 wbs=dawn.eta w=ds1
 {
-	if(distance==0)//lengthÖĞ´æ·Å×Åliteral
+	if(distance==0)//lengthä¸­å­˜æ”¾ç€literal
 	{
 		length&=0xff;
-		fwrite(&length,2,1,wt);//´ËÊ±wbsÎªÎŞÓÃ²ÎÊı 
+		fwrite(&length,2,1,wt);//æ­¤æ—¶wbsä¸ºæ— ç”¨å‚æ•° 
 	}
-	else//lengthÖĞÊÇlen 
+	else//lengthä¸­æ˜¯len 
 	{
 		lls=length;
 		ld=distance;
@@ -35,12 +35,12 @@ void outputablock(U I distance,U I length,FILE *wt,binarychar &bc,short &num,FIL
 		binarychar bt=hufchar2binarychar(tmp);
 		for(int j=0;j<lileeta[i];j++)
 		{
-			ull aas=0;//ÎŞÓÃµÄ±äÁ¿£¬Ö»ÊÇÎªÁË´Õ²ÎÊı 
+			ull aas=0;//æ— ç”¨çš„å˜é‡ï¼Œåªæ˜¯ä¸ºäº†å‡‘å‚æ•° 
 			lengtheta.binary[lgbcp++]=bt.binary[j+(8-lileeta[i])];
 			tryout(lgbcp,lengtheta,wbs,aas);
 		}
 		for(i=0;i<mtfsz;i++)
-		  if(distance==mtf[i])//mtfËã·¨£¬ÓÉÓÚmtfsz=ewsËùÒÔ²»¿ÉÄÜÕÒ²»µ½ 
+		  if(distance==mtf[i])//mtfç®—æ³•ï¼Œç”±äºmtfsz=ewsæ‰€ä»¥ä¸å¯èƒ½æ‰¾ä¸åˆ° 
 		  {
 		  	  U I k; 
 		  	  i++;
@@ -50,7 +50,7 @@ void outputablock(U I distance,U I length,FILE *wt,binarychar &bc,short &num,FIL
 		  	  binaryint bt=hufint2binaryint(tmp);
 		  	  for(int j=0;j<dsteta[k];j++)
 			  {
-				  ull aas=0;//ÎŞÓÃµÄ±äÁ¿£¬Ö»ÊÇÎªÁË´Õ²ÎÊı 
+				  ull aas=0;//æ— ç”¨çš„å˜é‡ï¼Œåªæ˜¯ä¸ºäº†å‡‘å‚æ•° 
 				  lengtheta.binary[lgbcp++]=bt.binary[j+(32-dsteta[k])];
 				  tryout(lgbcp,lengtheta,wbs,aas); 
 			  }
@@ -67,7 +67,7 @@ void longest(char *readbuf,U I n,vector<U I> *wherelist,int i,int lessthan,U I &
 	dstc=lgth=0;
 	if(fast==1)
 	{
-		returnif(wherelist[(U I)((U char)readbuf[i])].size()==0,);//·µ»ØÖµÊÇvoid£¬ËùÒÔµÚ¶ş¸ö²ÎÊı²»Ìî 
+		returnif(wherelist[(U I)((U char)readbuf[i])].size()==0,);//è¿”å›å€¼æ˜¯voidï¼Œæ‰€ä»¥ç¬¬äºŒä¸ªå‚æ•°ä¸å¡« 
 		U I last=wherelist[(U I)((U char)readbuf[i])][wherelist[(U I)((U char)readbuf[i])].size()-1];
 		for(U I k=i;readbuf[k]==readbuf[last++]&&k<n&&k-i<=lessthan;k++);
 		lgth=last-1-wherelist[(U I)((U char)readbuf[i])][wherelist[(U I)((U char)readbuf[i])].size()-1];
@@ -123,7 +123,7 @@ short cprs(char *inf,char *outf,U I dsize,bool usehuffman,bool mp,string passwor
 			lastlen=len;
 			longest(readbuf,n,wherelist,i,lessthan,start,len,fast,easywindowsize);
 			wherelist[(U I)((U char)readbuf[i])].push_back(i);
-			if(lastlen>=morethan&&len<=lastlen)//ÉÏÒ»´ÎÆ¥Åä×ã¹»ºÃ
+			if(lastlen>=morethan&&len<=lastlen)//ä¸Šä¸€æ¬¡åŒ¹é…è¶³å¤Ÿå¥½
 			{
 				for(int j=1;j<lastlen;j++)
 				  wherelist[(U I)((U char)readbuf[j+i-1])].push_back(j+i-1);
@@ -133,12 +133,12 @@ short cprs(char *inf,char *outf,U I dsize,bool usehuffman,bool mp,string passwor
 				ard=false;
 			}
 			else
-			  if(ard)//ard==true:²»ÊÇ¿ªÊ¼»òÊÇÉÏÒ»¸öÎªdstc+lgthÑ¹Ëõ´® 
-			  	outputablock(0,readbuf[i-1],wt,bc,num,w,wb,mtfsize,automtf);//ÉÏÒ»´ÎµÄÆ¥Åä²¢²»ÊÇÄÇÃ´ºÃ£¬½«ÉÏÒ»¸öÆ¥ÅäµÄÊ×¸ö×Ö·ûÊä³ö£¬²¢½«µÚ¶ş¸ö×Ö·û×÷ÎªÊ×Î»²¢¼ÌĞøÆ¥Åä 
+			  if(ard)//ard==true:ä¸æ˜¯å¼€å§‹æˆ–æ˜¯ä¸Šä¸€ä¸ªä¸ºdstc+lgthå‹ç¼©ä¸² 
+			  	outputablock(0,readbuf[i-1],wt,bc,num,w,wb,mtfsize,automtf);//ä¸Šä¸€æ¬¡çš„åŒ¹é…å¹¶ä¸æ˜¯é‚£ä¹ˆå¥½ï¼Œå°†ä¸Šä¸€ä¸ªåŒ¹é…çš„é¦–ä¸ªå­—ç¬¦è¾“å‡ºï¼Œå¹¶å°†ç¬¬äºŒä¸ªå­—ç¬¦ä½œä¸ºé¦–ä½å¹¶ç»§ç»­åŒ¹é… 
 			  else
 			    ard=true;  
 		}
-		if(ard)//×îºóÓĞÃ»Êä³öµÄ
+		if(ard)//æœ€åæœ‰æ²¡è¾“å‡ºçš„
 		  outputablock(0,readbuf[n-1],wt,bc,num,w,wb,mtfsize,automtf);
 		n=fread(readbuf,1,dsize,rd);
 		readbuf[n]='\0';
@@ -159,7 +159,7 @@ short cprs(char *inf,char *outf,U I dsize,bool usehuffman,bool mp,string passwor
 	vector<fileinfo> gethfhd;   
 	ull dawnsize=0,dawns2,dawntmp,distc=0,distc2=0;
 	halffile2(Cc"dawn.lile",Cc"dawn1.lile",Cc"dawn2.lile");
-	shhuffmanfilecompress(Cc"dawn.lile",Cc"dawn.sh",dawnsize,b1,1);//Ìú¶¨±È²»Ñ¹ËõĞ¡£¬ÒòÎª¶¼ÊÇ0~285µÄÊı£¨Ö»Òª9bit)£¬´æ´¢Ê±ÓÃÁË2byte(16bit)£¬²úÉúÀË·Ñ 
+	shhuffmanfilecompress(Cc"dawn.lile",Cc"dawn.sh",dawnsize,b1,1);//é“å®šæ¯”ä¸å‹ç¼©å°ï¼Œå› ä¸ºéƒ½æ˜¯0~285çš„æ•°ï¼ˆåªè¦9bit)ï¼Œå­˜å‚¨æ—¶ç”¨äº†2byte(16bit)ï¼Œäº§ç”Ÿæµªè´¹ 
 	shhuffmanfilecompress(Cc"dawn1.lile",Cc"dawn1.sh",dawns2,b2,1);
 	shhuffmanfilecompress(Cc"dawn2.lile",Cc"dawn2.sh",dawntmp,b3,1);
 	dawns2+=dawntmp;
@@ -214,12 +214,12 @@ short cprs(char *inf,char *outf,U I dsize,bool usehuffman,bool mp,string passwor
 	U char filetype=0;//dawn 
 	fwrite(&filetype,1,1,wrt);
 	setmp(mp,head);
-	setvers(9,head);//Ñ¹ËõÎÄ¼ş°æ±¾8£¬·ÇËã·¨°æ±¾8
+	setvers(9,head);//å‹ç¼©æ–‡ä»¶ç‰ˆæœ¬8ï¼Œéç®—æ³•ç‰ˆæœ¬8
 	fwrite(&head,2,1,wrt); 
 	fwritevlq(wrt,dsize);
 	fwritevlq(wrt,jmsz);
 	fwritevlq(wrt,mtfsize);
-	for(int i=0;i<gethfhd.size();i++)//Ë³ĞòÒÀ´ÎÊÇlilemainºÍdistance+lileeta 
+	for(int i=0;i<gethfhd.size();i++)//é¡ºåºä¾æ¬¡æ˜¯lilemainå’Œdistance+lileeta 
 	  fwritevlq(wrt,gethfhd[i].size);
 	fclose(wt);
 	fclose(wb);
@@ -228,7 +228,7 @@ short cprs(char *inf,char *outf,U I dsize,bool usehuffman,bool mp,string passwor
 	returnif(mgfile(gethfhd,"dawn.main",1)!=OK,MERGERFILESERROR);
 	if(mp)
 	{
-		ull tmp;//´Õ²ÎÊıÓÃµÄ 
+		ull tmp;//å‡‘å‚æ•°ç”¨çš„
 		U short res=opsfileencode("dawn.main","dawn.ops",password,tmp,1);
 		returnif(res!=OK,res);
 		returnif(!mergerfiles(Cc"dawnhead.tmp",Cc"dawn.ops",outf,1),MERGERFILESERROR);
@@ -293,7 +293,7 @@ short dcprs(char *outf,U I dsize,U I mtfsize)
 		{
 			ch-=256;
 			U int add=0;
-			for(int i=0;i<lileeta[ch];i++)//¶ÁÈ¡lgthµÄeta 
+			for(int i=0;i<lileeta[ch];i++)//è¯»å–lgthçš„eta 
 			{
 				add=(add<<1)+bc.binary[p++];
 				if(p==8)
@@ -306,7 +306,7 @@ short dcprs(char *outf,U I dsize,U I mtfsize)
 			U I len=lilemap[ch]+add,dstc=0;
 			ch=add=0;
 			fread(&ch,1,1,rb);
-			for(int i=0;i<dsteta[ch];i++)//¶ÁÈ¡dstcµÄeta 
+			for(int i=0;i<dsteta[ch];i++)//è¯»å–dstcçš„eta 
 			{
 				add=(add<<1)+bc.binary[p++];
 				if(p==8)
@@ -322,21 +322,21 @@ short dcprs(char *outf,U I dsize,U I mtfsize)
 		  	mtf[0]=dstc;
 		  	if(dstc>dp||dp+len>=dsize+10)
 			{
-				cout<<"jump(×Öµäµ¥´ÊÌø×ªÖµ)£º"<<dstc<<endl<<"length(µ¥´Ê³¤¶È£©£º"<<len<<endl<<"µ±Ç°×Öµä³¤£º"<<dp<<endl<<"´íÎó£ºÌø×ªÖµ³¬¹ı×Öµä»òÊÇµ¥´Ê³¤¶È¹ı³¤£¬ÎÄ¼şËğ»µ¡£"<<endl<<"½¨Òé£ºÃÜÂë´íÎó£¿"<<endl; 
+				cout<<"jump(å­—å…¸å•è¯è·³è½¬å€¼)ï¼š"<<dstc<<endl<<"length(å•è¯é•¿åº¦ï¼‰ï¼š"<<len<<endl<<"å½“å‰å­—å…¸é•¿ï¼š"<<dp<<endl<<"é”™è¯¯ï¼šè·³è½¬å€¼è¶…è¿‡å­—å…¸æˆ–æ˜¯å•è¯é•¿åº¦è¿‡é•¿ï¼Œæ–‡ä»¶æŸåã€‚"<<endl<<"å»ºè®®ï¼šå¯†ç é”™è¯¯ï¼Ÿ"<<endl; 
 				fclose(rd);
 				fclose(wt);
 				fclose(rb);
 				fclose(r);
 				return WRONGPASSWORD;
 			} 
-			while(len--)//len´Î
+			while(len--)//lenæ¬¡
 			{
 				buf[dp]=buf[dp-dstc];
 				fwrite(&buf[dp++],1,1,wt);
 			}
 		}
 		if(dp>=dsize)
-		  dp=0;//²»ĞèÒª¶ÔbufÇå¿Õ£¬ÒòÎª½ÓÏÂÀ´µÄÄÚÈİ»á¸²¸Çµô 
+		  dp=0;//ä¸éœ€è¦å¯¹bufæ¸…ç©ºï¼Œå› ä¸ºæ¥ä¸‹æ¥çš„å†…å®¹ä¼šè¦†ç›–æ‰ 
 	}
 	delete[] buf;
 	fclose(rd);
@@ -375,12 +375,14 @@ short dawndecompress(char *inf,char *outf,bool cover,string password,bool debug)
 	returnif(strcmp(sign,"CZL"),COMPRESSFILEBREAK);
 	U char type;
 	fread(&type,1,1,rd);
-	returnif(type!=0,COMPRESSFILEBREAK);//²»ÊÇdawnÎÄ¼ş
+	returnif(type!=0,COMPRESSFILEBREAK);//ä¸æ˜¯dawnæ–‡ä»¶
 	U short head;
 	fread(&head,2,1,rd);
 	returnif(getvers(head)>9,VTL);//version too low 
-	U I dsize=freadvlq(rd),tmp=freadvlq(rd),mtfsize=freadvlq(rd);//tmp:ÎÄ¼şÁĞ±íµÄ´óĞ¡£¬ÔÚgetlistÖĞÖ»ĞèÒª½âÑ¹tmp´óĞ¡µÄ²¿·Ö¾Í¿ÉÒÔ»ñÈ¡ÎÄ¼şÁĞ±í£¬µ«ÊÇÔÚÈ«½âÑ¹µ±ÖĞÎŞÓÃ£¬¹ÊÌø¹ı 
+	U I dsize=freadvlq(rd),tmp=freadvlq(rd),mtfsize=freadvlq(rd);//tmp:æ–‡ä»¶åˆ—è¡¨çš„å¤§å°ï¼Œåœ¨getlistä¸­åªéœ€è¦è§£å‹tmpå¤§å°çš„éƒ¨åˆ†å°±å¯ä»¥è·å–æ–‡ä»¶åˆ—è¡¨ï¼Œä½†æ˜¯åœ¨å…¨è§£å‹å½“ä¸­æ— ç”¨ï¼Œæ•…è·³è¿‡ 
 	U short res=split(rd,head,password);
+	if(res!=OK)
+	  cout<<"é”™è¯¯ï¼šæ–‡ä»¶æŸåï¼ˆå»ºè®®ï¼šå¯†ç é”™è¯¯ï¼Ÿï¼‰"<<endl;
 	returnif(res!=OK,res);
 	res=dcprs(outf,dsize,mtfsize);
 	if(!debug)
@@ -462,7 +464,7 @@ short getlist(char *input,vector<string> &files,string password)
 			char ch;
 			ch=add=0;
 			fread(&ch,1,1,rb);
-			for(int i=0;i<dsteta[ch];i++)//¶ÁÈ¡dstcµÄeta 
+			for(int i=0;i<dsteta[ch];i++)//è¯»å–dstcçš„eta 
 			{
 				add=(add<<1)+bc.binary[p++];
 				if(p==8)
@@ -478,12 +480,12 @@ short getlist(char *input,vector<string> &files,string password)
 		  	mtf[0]=dstc;
 			if(dstc>dp||dp+len>=dsize+10)
 			{
-				cout<<"jump(×Öµäµ¥´ÊÌø×ªÖµ)£º"<<dstc<<endl<<"length(µ¥´Ê³¤¶È£©£º"<<len<<endl<<"µ±Ç°×Öµä³¤£º"<<dp<<endl<<"´íÎó£ºÌø×ªÖµ³¬¹ı×Öµä»òÊÇµ¥´Ê³¤¶È¹ı³¤£¬ÎÄ¼şËğ»µ¡£"<<endl<<"½¨Òé£ºÃÜÂë´íÎó£¿"<<endl; 
+				cout<<"jump(å­—å…¸å•è¯è·³è½¬å€¼)ï¼š"<<dstc<<endl<<"length(å•è¯é•¿åº¦ï¼‰ï¼š"<<len<<endl<<"å½“å‰å­—å…¸é•¿ï¼š"<<dp<<endl<<"é”™è¯¯ï¼šè·³è½¬å€¼è¶…è¿‡å­—å…¸æˆ–æ˜¯å•è¯é•¿åº¦è¿‡é•¿ï¼Œæ–‡ä»¶æŸåã€‚"<<endl<<"å»ºè®®ï¼šå¯†ç é”™è¯¯ï¼Ÿ"<<endl; 
 				fclose(wt);
 				dellist(delflist,16);
 				return WRONGPASSWORD;
 			} 
-			while(len--)//len´Î
+			while(len--)//lenæ¬¡
 			{
 				buf[dp]=buf[dp-dstc];
 				fwrite(&buf[dp++],1,1,wt);	
@@ -492,7 +494,7 @@ short getlist(char *input,vector<string> &files,string password)
 			}
 		}
 		if(dp==dsize)
-		  dp=0;//²»ĞèÒª¶ÔbufÇå¿Õ£¬ÒòÎª½ÓÏÂÀ´µÄÄÚÈİ»á¸²¸Çµô 
+		  dp=0;//ä¸éœ€è¦å¯¹bufæ¸…ç©ºï¼Œå› ä¸ºæ¥ä¸‹æ¥çš„å†…å®¹ä¼šè¦†ç›–æ‰ 
 	}
 	delete[] buf;
 	fclose(rd);
@@ -502,7 +504,7 @@ short getlist(char *input,vector<string> &files,string password)
 	rd=fopen("lst.tmp","rb");
 	if(rd==NULL)
 	{
-		files.push_back("´íÎó£ºÎŞ·¨ÕÒµ½ĞèÒª²éÕÒÁĞ±íµÄÎÄ¼ş");
+		files.push_back("é”™è¯¯ï¼šæ— æ³•æ‰¾åˆ°éœ€è¦æŸ¥æ‰¾åˆ—è¡¨çš„æ–‡ä»¶");
 		return -1;
 	}
 	string filedir;
@@ -522,7 +524,7 @@ short getlist(char *input,vector<string> &files,string password)
 	}
 	while(filedir!="dirlistover"&&n)
 	{
-		files.push_back("Ä¿Â¼£º"+filedir);
+		files.push_back("ç›®å½•ï¼š"+filedir);
 		filedir="";
 		n=fread(&tmp,1,1,rd);
 		while(tmp!='\n'&&n!=0)
@@ -545,7 +547,7 @@ short getlist(char *input,vector<string> &files,string password)
 	fread(&onesize,8,1,rd);
 	while(n)
 	{
-		files.push_back("ÎÄ¼ş£º"+filedir);
+		files.push_back("æ–‡ä»¶ï¼š"+filedir);
 		filesize.push_back(onesize);
 		filedir="";
 		n=fread(&tmp,1,1,rd);
@@ -568,10 +570,10 @@ short getlist(char *input,vector<string> &files,string password)
 		ull src=files[i].size();
 		for(int j=0;j<maxsize-src+10;j++)
 		  files[i]+=' ';
-		files[i]+="´óĞ¡(Ñ¹ËõÇ°):"+int2string(filesize[i-filestart]);
+		files[i]+="å¤§å°(å‹ç¼©å‰):"+int2string(filesize[i-filestart]);
 		for(int j=0;j<maxsize2-int2string(filesize[i-filestart]).size();j++)
 		  files[i]+=' ';
-		files[i]+="(ÒÔ×Ö½ÚÎªµ¥Î»)";
+		files[i]+="(ä»¥å­—èŠ‚ä¸ºå•ä½)";
 	}	 
 	fclose(rd);
 	dellist(delflist,16);
