@@ -1,11 +1,11 @@
- #include "../headerfile/dawn.hpp"
+#include "../headerfile/dawn.hpp"
 IL void printtitle()
 {
 	system("cls");
 	cout<<"****************************************"<<endl;
     cout<<"*dawncompress V9.1CopyRight(c) by ChZL *"<<endl;
     cout<<"*    Production time: November26,2022  *"<<endl;
-    cout<<"*      Èí¼ş°æ±¾£ºV9.1,ÎÄ¼ş°æ±¾£ºV9     *"<<endl; 
+    cout<<"*      è½¯ä»¶ç‰ˆæœ¬ï¼šV9.1,æ–‡ä»¶ç‰ˆæœ¬ï¼šV9     *"<<endl; 
     cout<<"****************************************"<<endl;
     return ;
 } 
@@ -28,56 +28,56 @@ int main(int argc,char *argv[])//dawncompress.exe a.in -c a.out -r100 -pabc
 	if(argc<2)
 	{
 		cserr:
-		cout<<"ÇëÊäÈëÕıÈ·µÄ²ÎÊı£¡"<<endl;
-		cout<<"ÔÚÃüÁîĞĞÖĞÊäÈëdawn -h »òdawn /h»ñÈ¡°ïÖú"<<endl;
+		cout<<"è¯·è¾“å…¥æ­£ç¡®çš„å‚æ•°ï¼"<<endl;
+		cout<<"åœ¨å‘½ä»¤è¡Œä¸­è¾“å…¥dawn -h æˆ–dawn /hè·å–å¸®åŠ©"<<endl;
 		syspause;  
 		return UNKNOWERROR;
 	}
 	if(argv[1][0]=='-'&&(argv[1][1]=='h'||argv[1][1]=='H')&&(argv[1][2]!='c'&&argv[1][2]!='d'))
 	{ 
-		cout<<"²ÎÊıËµÃ÷£ºÃüÁî²ÎÊıÇ°¶¼ĞèÒª¼ÓÉÏ-·ñÔò½«»á±»ÈÏÎªÊÇÎÄ¼ş²ÎÊı"<<endl; 
-		cout<<"-c                  ÎÄ¼şÑ¹Ëõ²ÎÊı£¬½«ÊäÈëËùÓĞµÄÎÄ¼şÑ¹ËõÎª×îºóÒ»¸öÊäÈëµÄÎÄ¼ş"<<endl;
-		cout<<"-d                  ÎÄ¼ş½âÑ¹Ëõ²ÎÊı£¬½«ÊäÈëµÄÎÄ¼ş½âÑ¹£¬²»ĞèÒªĞ´Êä³öÎÄ¼ş£¬½«×Ô¶¯½âÑ¹"<<endl;
-		cout<<"-r                  ×Öµä³¤¶È£¬Ô½³¤Ñ¹Ëõ³öµÄÎÄ¼şÔ½Ğ¡£¬µ«Ê±¼äÔ½³¤¡£²»¿ÉÒÔ³¬¹ıÎÄ¼ş´óĞ¡»òÊÇĞ¡ÓÚ17"<<endl;
-		cout<<"-rall               ½«Õû¸öÎÄ¼şµÄ´óĞ¡×÷Îª×Öµä³¤¶È"<<endl; 
-		cout<<"-l                  ²é¿´ÎÄ¼şÁĞ±í£¬²é¿´Ñ¹Ëõ°üµÄÎÄ¼şÁĞ±í"<<endl;
-		cout<<"-p                  ÊäÈëÃÜÂë£¬½âÑ¹ËõÊ±¿ÉÒÔ²»Ğ´¸Ã²ÎÊı£¬µ«ÊÇĞèÒª°´ÕÕÌáÊ¾ÊäÈëÃÜÂë"<<endl;
-		cout<<"-w                  ÉèÖÃ²éÕÒ»º³åÇø(¼òÒ×µÄ»¬¶¯´°¿Ú)´óĞ¡£¬ÉèÖÃÎª0»ò²»ÉèÖÃÊ±Ä¬ÈÏ²éÕÒ»º³åÇøÎª×Öµä³¤¶È£¨ÎŞ»¬¶¯´°¿Ú£¬½øĞĞÈ«Æ¥Åä£©¡£ÉèÖÃ²éÕÒ»º³åÇøºó³ÌĞòµÄËÙ¶È½«»áÓĞËùÌáÉı£¬µ«ÊÇÑ¹ËõºóµÄÎÄ¼ş½«¸ü´ó"<<endl;
-		cout<<endl<<"ÆäËûÏî£º"<<endl;
-		cout<<"-hc                 Ê¹ÓÃhuffmanËã·¨½«µ¥¸öÎÄ¼şÑ¹Ëõ"<<endl;
-		cout<<"-hd                 Ê¹ÓÃhuffmanËã·¨½«µ¥¸öÎÄ¼ş½âÑ¹Ëõ£¨½«×îºóÒ»¸öÎÄ¼ş²ÎÊı×÷ÎªÊä³öÎÄ¼ş£©"<<endl;
-		cout<<"-opse               Ê¹ÓÃopsËã·¨½«µ¥¸öÎÄ¼ş¼ÓÃÜ£¨ĞèÒªÊ¹ÓÃ-p²ÎÊı£©"<<endl;
-		cout<<"-opsd               Ê¹ÓÃopsËã·¨½«µ¥¸öÎÄ¼ş½âÃÜ£¨¿ÉÒÔ²»Ğ´-p²ÎÊı£¬µ«ÊÇĞèÒª°´ÕÕÌáÊ¾ÊäÈëÃÜÂë£©"<<endl;
-		cout<<"-bc                 ½«¶à¸öÎÄ¼ş´ò°ü£¬Êä³öÎªÊäÈëÖĞµÄ×îºóÒ»¸öÎÄ¼ş"<<endl;
-		cout<<"-bd                 ½«´ò°üÎÄ¼ş½â°ü£¬²»ĞèÒªÖ¸¶¨Êä³öÎÄ¼ş"<<endl;
-		cout<<endl<<"¹¦ÄÜÏî£º"<<endl;
-		cout<<"-enablecoveroutfile ´ò¿ª¸²¸ÇÊä³öÎÄ¼ş"<<endl;
-		cout<<"-fast               ¹²ÓĞÈı¸öÑ¡Ïî£¬·Ö±ğÎª1~3¡£1Ñ¡ÏîËÙ¶È×î¿ì£¬3×îÂı¡£ËÙ¶ÈÔ½¿ìÑ¹ËõºóÎÄ¼şÔ½´ó¡£Ê¹ÓÃ·½Ê½£º-fast1£ºÉèÖÃËÙ¶ÈÑ¡ÏîÎª1¡£²»ÊäÈë´Ë²ÎÊıÔòÄ¬ÈÏÎª3¡£" <<endl;
-		cout<<"×¢Òâ£¬¶ÔÓÚ-enablecoveroutfileÊÊÓÃÓÚÆäËûËùÓĞÃüÁî"<<endl; 
-		cout<<"Ñ¹Ëõ£¬½âÑ¹Ëõ·¶Àı:\nÑ¹Ëõ·¶Àı£ºdawn.exe infile1 infile2 ... -c outfile -rdirsize [-ppassword] [-disablehuffman] [-enablecoveroutfile]\n½âÑ¹Ëõ·¶Àı£º\n dawn infile -d [-ppassword] [-enablecoveroutfile]"<<endl;
-		cout<<"Ê¹ÓÃhuffmanÑ¹Ëõ£¬½âÑ¹Ëõ·¶Àı£ºdawn.exe infile -hc|-hd outfile [-disablehuffman] [-enablecoveroutfile]"<<endl;
-		cout<<"´ò°ü£¬½â°ü·¶Àı£ºdawn.exe infile -bc|-bd outfile [-enablecoveroutfile]"<<endl;
-		cout<<"Ê¹ÓÃops¼ÓÃÜ½âÃÜ·¶Àı£ºdawn.exe infile -opse|-opsd outfile [-enablecoveroutfile]"<<endl;
-		cout<<"[]ÖĞµÄ´ú±í¿ÉÑ¡²ÎÊı¼´²»ÊäÈëÒ²¿ÉÒÔÈÃ³ÌĞòÕıÈ·ÔËĞĞ"<<endl;
-		cout<<"|´ú±íÑ¡Ôñ£¬ÀıÈç-c|-dÄú¿ÉÒÔÊäÈë-cÀ´Ñ¹Ëõ»òÊÇ-dÀ´½âÑ¹Ëõ"<<endl;
-		cout<<"Äã¿ÉÒÔÏñÊ¹ÓÃG++±àÒëÆ÷Ò»Ñùµ÷»»²ÎÊı£¬µ«Çë±£Ö¤Êä³öÎÄ¼şÊÇ×îºóÒ»¸öÎÄ¼ş²ÎÊı"<<endl;
-		cout<<"Àı£ºdawn infile -c outfile -r65535ºÍdawn -c -r65535 infile outfileµÈ¼Û"<<endl;
-		cout<<"µ«ÊÇºÍ dawn -c -r65535 outfile infile ²»µÈ¼Û£¬´ËÊ±outfile½«»á±»¿´×öÊÇÊäÈëÎÄ¼ş"<<endl;
+		cout<<"å‚æ•°è¯´æ˜ï¼šå‘½ä»¤å‚æ•°å‰éƒ½éœ€è¦åŠ ä¸Š-å¦åˆ™å°†ä¼šè¢«è®¤ä¸ºæ˜¯æ–‡ä»¶å‚æ•°"<<endl; 
+		cout<<"-c                  æ–‡ä»¶å‹ç¼©å‚æ•°ï¼Œå°†è¾“å…¥æ‰€æœ‰çš„æ–‡ä»¶å‹ç¼©ä¸ºæœ€åä¸€ä¸ªè¾“å…¥çš„æ–‡ä»¶"<<endl;
+		cout<<"-d                  æ–‡ä»¶è§£å‹ç¼©å‚æ•°ï¼Œå°†è¾“å…¥çš„æ–‡ä»¶è§£å‹ï¼Œä¸éœ€è¦å†™è¾“å‡ºæ–‡ä»¶ï¼Œå°†è‡ªåŠ¨è§£å‹"<<endl;
+		cout<<"-r                  å­—å…¸é•¿åº¦ï¼Œè¶Šé•¿å‹ç¼©å‡ºçš„æ–‡ä»¶è¶Šå°ï¼Œä½†æ—¶é—´è¶Šé•¿ã€‚ä¸å¯ä»¥è¶…è¿‡æ–‡ä»¶å¤§å°æˆ–æ˜¯å°äº17"<<endl;
+		cout<<"-rall               å°†æ•´ä¸ªæ–‡ä»¶çš„å¤§å°ä½œä¸ºå­—å…¸é•¿åº¦"<<endl; 
+		cout<<"-l                  æŸ¥çœ‹æ–‡ä»¶åˆ—è¡¨ï¼ŒæŸ¥çœ‹å‹ç¼©åŒ…çš„æ–‡ä»¶åˆ—è¡¨"<<endl;
+		cout<<"-p                  è¾“å…¥å¯†ç ï¼Œè§£å‹ç¼©æ—¶å¯ä»¥ä¸å†™è¯¥å‚æ•°ï¼Œä½†æ˜¯éœ€è¦æŒ‰ç…§æç¤ºè¾“å…¥å¯†ç "<<endl;
+		cout<<"-w                  è®¾ç½®æŸ¥æ‰¾ç¼“å†²åŒº(ç®€æ˜“çš„æ»‘åŠ¨çª—å£)å¤§å°ï¼Œè®¾ç½®ä¸º0æˆ–ä¸è®¾ç½®æ—¶é»˜è®¤æŸ¥æ‰¾ç¼“å†²åŒºä¸ºå­—å…¸é•¿åº¦ï¼ˆæ— æ»‘åŠ¨çª—å£ï¼Œè¿›è¡Œå…¨åŒ¹é…ï¼‰ã€‚è®¾ç½®æŸ¥æ‰¾ç¼“å†²åŒºåç¨‹åºçš„é€Ÿåº¦å°†ä¼šæœ‰æ‰€æå‡ï¼Œä½†æ˜¯å‹ç¼©åçš„æ–‡ä»¶å°†æ›´å¤§"<<endl;
+		cout<<endl<<"å…¶ä»–é¡¹ï¼š"<<endl;
+		cout<<"-hc                 ä½¿ç”¨huffmanç®—æ³•å°†å•ä¸ªæ–‡ä»¶å‹ç¼©"<<endl;
+		cout<<"-hd                 ä½¿ç”¨huffmanç®—æ³•å°†å•ä¸ªæ–‡ä»¶è§£å‹ç¼©ï¼ˆå°†æœ€åä¸€ä¸ªæ–‡ä»¶å‚æ•°ä½œä¸ºè¾“å‡ºæ–‡ä»¶ï¼‰"<<endl;
+		cout<<"-opse               ä½¿ç”¨opsç®—æ³•å°†å•ä¸ªæ–‡ä»¶åŠ å¯†ï¼ˆéœ€è¦ä½¿ç”¨-på‚æ•°ï¼‰"<<endl;
+		cout<<"-opsd               ä½¿ç”¨opsç®—æ³•å°†å•ä¸ªæ–‡ä»¶è§£å¯†ï¼ˆå¯ä»¥ä¸å†™-på‚æ•°ï¼Œä½†æ˜¯éœ€è¦æŒ‰ç…§æç¤ºè¾“å…¥å¯†ç ï¼‰"<<endl;
+		cout<<"-bc                 å°†å¤šä¸ªæ–‡ä»¶æ‰“åŒ…ï¼Œè¾“å‡ºä¸ºè¾“å…¥ä¸­çš„æœ€åä¸€ä¸ªæ–‡ä»¶"<<endl;
+		cout<<"-bd                 å°†æ‰“åŒ…æ–‡ä»¶è§£åŒ…ï¼Œä¸éœ€è¦æŒ‡å®šè¾“å‡ºæ–‡ä»¶"<<endl;
+		cout<<endl<<"åŠŸèƒ½é¡¹ï¼š"<<endl;
+		cout<<"-enablecoveroutfile æ‰“å¼€è¦†ç›–è¾“å‡ºæ–‡ä»¶"<<endl;
+		cout<<"-fast               å…±æœ‰ä¸‰ä¸ªé€‰é¡¹ï¼Œåˆ†åˆ«ä¸º1~3ã€‚1é€‰é¡¹é€Ÿåº¦æœ€å¿«ï¼Œ3æœ€æ…¢ã€‚é€Ÿåº¦è¶Šå¿«å‹ç¼©åæ–‡ä»¶è¶Šå¤§ã€‚ä½¿ç”¨æ–¹å¼ï¼š-fast1ï¼šè®¾ç½®é€Ÿåº¦é€‰é¡¹ä¸º1ã€‚ä¸è¾“å…¥æ­¤å‚æ•°åˆ™é»˜è®¤ä¸º3ã€‚" <<endl;
+		cout<<"æ³¨æ„ï¼Œå¯¹äº-enablecoveroutfileé€‚ç”¨äºå…¶ä»–æ‰€æœ‰å‘½ä»¤"<<endl; 
+		cout<<"å‹ç¼©ï¼Œè§£å‹ç¼©èŒƒä¾‹:\nå‹ç¼©èŒƒä¾‹ï¼šdawn.exe infile1 infile2 ... -c outfile -rdirsize [-ppassword] [-disablehuffman] [-enablecoveroutfile]\nè§£å‹ç¼©èŒƒä¾‹ï¼š\n dawn infile -d [-ppassword] [-enablecoveroutfile]"<<endl;
+		cout<<"ä½¿ç”¨huffmanå‹ç¼©ï¼Œè§£å‹ç¼©èŒƒä¾‹ï¼šdawn.exe infile -hc|-hd outfile [-disablehuffman] [-enablecoveroutfile]"<<endl;
+		cout<<"æ‰“åŒ…ï¼Œè§£åŒ…èŒƒä¾‹ï¼šdawn.exe infile -bc|-bd outfile [-enablecoveroutfile]"<<endl;
+		cout<<"ä½¿ç”¨opsåŠ å¯†è§£å¯†èŒƒä¾‹ï¼šdawn.exe infile -opse|-opsd outfile [-enablecoveroutfile]"<<endl;
+		cout<<"[]ä¸­çš„ä»£è¡¨å¯é€‰å‚æ•°å³ä¸è¾“å…¥ä¹Ÿå¯ä»¥è®©ç¨‹åºæ­£ç¡®è¿è¡Œ"<<endl;
+		cout<<"|ä»£è¡¨é€‰æ‹©ï¼Œä¾‹å¦‚-c|-dæ‚¨å¯ä»¥è¾“å…¥-cæ¥å‹ç¼©æˆ–æ˜¯-dæ¥è§£å‹ç¼©"<<endl;
+		cout<<"ä½ å¯ä»¥åƒä½¿ç”¨G++ç¼–è¯‘å™¨ä¸€æ ·è°ƒæ¢å‚æ•°ï¼Œä½†è¯·ä¿è¯è¾“å‡ºæ–‡ä»¶æ˜¯æœ€åä¸€ä¸ªæ–‡ä»¶å‚æ•°"<<endl;
+		cout<<"ä¾‹ï¼šdawn infile -c outfile -r65535å’Œdawn -c -r65535 infile outfileç­‰ä»·"<<endl;
+		cout<<"ä½†æ˜¯å’Œ dawn -c -r65535 outfile infile ä¸ç­‰ä»·ï¼Œæ­¤æ—¶outfileå°†ä¼šè¢«çœ‹åšæ˜¯è¾“å…¥æ–‡ä»¶"<<endl;
 		cout<<endl<<endl;
-		cout<<"Èç¹ûÄãÏëÊ¹ÓÃdeflate32µÄ²ÎÊı£¨»¬¶¯´°¿Ú´óĞ¡Îª32768£¬½«Õû¸öÎÄ¼ş×÷ÎªÒ»Õû¸ö¿é¶ÁÈ¡£©£¬ÇëÊäÈë£ºdawn infile -c outfile -rall -w32768 £¨ÔÚdeflate32µÄ²ÎÊıÏÂ£¬dawnËã·¨Ñ¹ËõµÄÎÄ¼ş±Èdeflate32Ñ¹ËõµÄÎÄ¼şÒªĞ¡£©"<<endl;
-		cout<<"Èç¹ûÄãÏëÌåÑé±¾Ëã·¨×îµÍµÄÑ¹ËõÂÊ£¨¼´Ñ¹ËõºóÎÄ¼ş×îĞ¡£©£¬ÇëÊäÈë:dawn infile -c outfile -rall"<<endl; 
+		cout<<"å¦‚æœä½ æƒ³ä½¿ç”¨deflate32çš„å‚æ•°ï¼ˆæ»‘åŠ¨çª—å£å¤§å°ä¸º32768ï¼Œå°†æ•´ä¸ªæ–‡ä»¶ä½œä¸ºä¸€æ•´ä¸ªå—è¯»å–ï¼‰ï¼Œè¯·è¾“å…¥ï¼šdawn infile -c outfile -rall -w32768 ï¼ˆåœ¨deflate32çš„å‚æ•°ä¸‹ï¼Œdawnç®—æ³•å‹ç¼©çš„æ–‡ä»¶æ¯”deflate32å‹ç¼©çš„æ–‡ä»¶è¦å°ï¼‰"<<endl;
+		cout<<"å¦‚æœä½ æƒ³ä½“éªŒæœ¬ç®—æ³•æœ€ä½çš„å‹ç¼©ç‡ï¼ˆå³å‹ç¼©åæ–‡ä»¶æœ€å°ï¼‰ï¼Œè¯·è¾“å…¥:dawn infile -c outfile -rall"<<endl; 
 		cout<<endl<<endl;
-		cout<<"·µ»ØÖµÁĞ±í£º"<<endl;
-		cout<<"·µ»ØÖµ0»ò5£º²»´æÔÚÈÎºÎ´íÎó£¬³ÌĞòÕı³£ÔËĞĞ"<<endl;
-		cout<<"·µ»ØÖµ1£º   ÃÜÂë´íÎó£¬ÊäÈëÁË´íÎóµÄÃÜÂë£¬Ôì³ÉÎŞ·¨½âÑ¹»ò½âÃÜ£¨×¢Òâ£¬µ±½âÑ¹Ê±³öÏÖ¡°½¨Òé£ºÃÜÂë´íÎó£¿¡±µÄ´íÎóÊ±Ò²»á·µ»Ø¸ÃÖµ£¬µ±Ñ¹ËõÎÄ¼şÃ»ÓĞÃÜÂëµ«½âÑ¹Ê±³öÏÖ¸Ã·µ»ØÖµÓ¦µ±ÊÓÎªÑ¹ËõÎÄ¼şËğ»µ"<<endl;
-		cout<<"·µ»ØÖµ2£º   Î´Öª´íÎó£¬µ±ÎŞ·¨È·¶¨ÊÇÎÄ¼şËğ»µ»¹ÊÇÃÜÂë´íÎóÊ±·µ»Ø¸ÃÖµ"<<endl;
-		cout<<"·µ»ØÖµ3£º   ÎŞ·¨ÕÒµ½»ò´ò¿ªÎÄ¼ş"<<endl;
-		cout<<"·µ»ØÖµ4£º   Êä³öÎÄ¼şÒÑ´æÔÚ£¬Í¬Ê±¸²¸ÇÊä³öÎÄ¼ş¹¦ÄÜÎ´¿ªÆô£¨Íü¼ÇÁË-enablecoveroutfile?£©»òÊÇÑ¹Ëõ£¬½âÑ¹ËõµÄÁÙÊ±ÎÄ¼ş±»Õ¼ÓÃ"<<endl;
-		cout<<"·µ»ØÖµ6£º   ¼«ÄÑ³öÏÖµÄ´íÎó£¬Æ´½ÓÎÄ¼şÊ±³öÏÖ´íÎó¡££¨ÓÃÍâ²¿³ÌĞò´ò¿ªÁËÑ¹ËõÊ±²úÉúµÄÁÙÊ±ÎÄ¼ş£¿£©"<<endl;
-		cout<<"·µ»ØÖµ7£º   Ñ¹ËõÎÄ¼şÒÑËğ»µ»ò²»ÊÇÑ¹ËõÎÄ¼ş"<<endl;		 
-		cout<<"·µ»ØÖµ8£º   ÄÚ´æ²»×ã"<<endl; 
-		cout<<"·µ»ØÖµ9£º   ½âÑ¹ËõÈí¼şµÄÎÄ¼ş°æ±¾Ì«µÍ£¬ÎŞ·¨½âÑ¹ÓÉ¸ßÎÄ¼ş°æ±¾Ñ¹ËõºóµÄÑ¹ËõÎÄ¼ş"<<endl;
-		cout<<"Äã¿ÉÒÔÊ¹ÓÃc++»òcÓïÑÔÖĞµÄsystemº¯Êı²é¿´·µ»ØÖµ²¢Ê¹ÓÃ·µ»ØÖµÀ´ÅĞ¶Ï³ÌĞòÔËĞĞÊÇ·ñ³É¹¦"<<endl; 
+		cout<<"è¿”å›å€¼åˆ—è¡¨ï¼š"<<endl;
+		cout<<"è¿”å›å€¼0æˆ–5ï¼šä¸å­˜åœ¨ä»»ä½•é”™è¯¯ï¼Œç¨‹åºæ­£å¸¸è¿è¡Œ"<<endl;
+		cout<<"è¿”å›å€¼1ï¼š   å¯†ç é”™è¯¯ï¼Œè¾“å…¥äº†é”™è¯¯çš„å¯†ç ï¼Œé€ æˆæ— æ³•è§£å‹æˆ–è§£å¯†ï¼ˆæ³¨æ„ï¼Œå½“è§£å‹æ—¶å‡ºç°â€œå»ºè®®ï¼šå¯†ç é”™è¯¯ï¼Ÿâ€çš„é”™è¯¯æ—¶ä¹Ÿä¼šè¿”å›è¯¥å€¼ï¼Œå½“å‹ç¼©æ–‡ä»¶æ²¡æœ‰å¯†ç ä½†è§£å‹æ—¶å‡ºç°è¯¥è¿”å›å€¼åº”å½“è§†ä¸ºå‹ç¼©æ–‡ä»¶æŸå"<<endl;
+		cout<<"è¿”å›å€¼2ï¼š   æœªçŸ¥é”™è¯¯ï¼Œå½“æ— æ³•ç¡®å®šæ˜¯æ–‡ä»¶æŸåè¿˜æ˜¯å¯†ç é”™è¯¯æ—¶è¿”å›è¯¥å€¼"<<endl;
+		cout<<"è¿”å›å€¼3ï¼š   æ— æ³•æ‰¾åˆ°æˆ–æ‰“å¼€æ–‡ä»¶"<<endl;
+		cout<<"è¿”å›å€¼4ï¼š   è¾“å‡ºæ–‡ä»¶å·²å­˜åœ¨ï¼ŒåŒæ—¶è¦†ç›–è¾“å‡ºæ–‡ä»¶åŠŸèƒ½æœªå¼€å¯ï¼ˆå¿˜è®°äº†-enablecoveroutfile?ï¼‰æˆ–æ˜¯å‹ç¼©ï¼Œè§£å‹ç¼©çš„ä¸´æ—¶æ–‡ä»¶è¢«å ç”¨"<<endl;
+		cout<<"è¿”å›å€¼6ï¼š   æéš¾å‡ºç°çš„é”™è¯¯ï¼Œæ‹¼æ¥æ–‡ä»¶æ—¶å‡ºç°é”™è¯¯ã€‚ï¼ˆç”¨å¤–éƒ¨ç¨‹åºæ‰“å¼€äº†å‹ç¼©æ—¶äº§ç”Ÿçš„ä¸´æ—¶æ–‡ä»¶ï¼Ÿï¼‰"<<endl;
+		cout<<"è¿”å›å€¼7ï¼š   å‹ç¼©æ–‡ä»¶å·²æŸåæˆ–ä¸æ˜¯å‹ç¼©æ–‡ä»¶"<<endl;		 
+		cout<<"è¿”å›å€¼8ï¼š   å†…å­˜ä¸è¶³"<<endl; 
+		cout<<"è¿”å›å€¼9ï¼š   è§£å‹ç¼©è½¯ä»¶çš„æ–‡ä»¶ç‰ˆæœ¬å¤ªä½ï¼Œæ— æ³•è§£å‹ç”±é«˜æ–‡ä»¶ç‰ˆæœ¬å‹ç¼©åçš„å‹ç¼©æ–‡ä»¶"<<endl;
+		cout<<"ä½ å¯ä»¥ä½¿ç”¨c++æˆ–cè¯­è¨€ä¸­çš„systemå‡½æ•°æŸ¥çœ‹è¿”å›å€¼å¹¶ä½¿ç”¨è¿”å›å€¼æ¥åˆ¤æ–­ç¨‹åºè¿è¡Œæ˜¯å¦æˆåŠŸ"<<endl; 
 		return UNKNOWERROR;
 	}
 	if(argc<3)
@@ -99,12 +99,12 @@ int main(int argc,char *argv[])//dawncompress.exe a.in -c a.out -r100 -pabc
 	  goto cserr;
 	else
 	  inf=argv[getfileinargv(argv,argc,1)];
-	cover=(getargvcom(argv,argc,(char*)"-enablecoveroutfile")!=-1||getargvcom(argv,argc,(char*)"-ENABLECOVEROUTFILE")!=-1||getargvcom(argv,argc,(char*)"-Enablecoveroutfile")!=-1);//´ò¿ªÎÄ¼ş¸²¸Ç 
-	if((getargvcom(argv,argc,(char*)"-p")!=-1||getargvcom(argv,argc,(char*)"-P")!=-1))//ÃÜÂë 
+	cover=(getargvcom(argv,argc,(char*)"-enablecoveroutfile")!=-1||getargvcom(argv,argc,(char*)"-ENABLECOVEROUTFILE")!=-1||getargvcom(argv,argc,(char*)"-Enablecoveroutfile")!=-1);//æ‰“å¼€æ–‡ä»¶è¦†ç›– 
+	if((egetargvcom(argv,argc,(char*)"-p")!=-1||egetargvcom(argv,argc,(char*)"-P")!=-1))//å¯†ç  
 	{
-		int ws=getargvcom(argv,argc,(char*)"-p");
+		int ws=egetargvcom(argv,argc,(char*)"-p");
 		if(ws==-1)
-		  ws=getargvcom(argv,argc,(char*)"-P");
+		  ws=egetargvcom(argv,argc,(char*)"-P");
 		password=argv[ws];
 		password.erase(0,2);
 		mp=true;
@@ -118,7 +118,7 @@ int main(int argc,char *argv[])//dawncompress.exe a.in -c a.out -r100 -pabc
 		  r=egetargvcom(argv,argc,(char*)"-R");
 		if(r==-1&&(getargvcom(argv,argc,(char*)"-rall")==-1&&getargvcom(argv,argc,(char*)"-RALL")==-1))
 		{
-			cout<<"²ÎÊı²»ÕıÈ·"<<endl<<"ÊäÈë-h »ò/h»ñÈ¡°ïÖú"<<endl;
+			cout<<"å‚æ•°ä¸æ­£ç¡®"<<endl<<"è¾“å…¥-h æˆ–/hè·å–å¸®åŠ©"<<endl;
 			return 0;
 		}  
 		if((getargvcom(argv,argc,Cc"-rall")!=-1||getargvcom(argv,argc,Cc"-RALL")!=-1))
@@ -143,18 +143,18 @@ int main(int argc,char *argv[])//dawncompress.exe a.in -c a.out -r100 -pabc
 		if(ews!=-1)
 		{
 			string windowsiz=argv[ews];
-			windowsiz.erase(0,2);//È¥µô¿ªÍ·µÄ-w 
+			windowsiz.erase(0,2);//å»æ‰å¼€å¤´çš„-w 
 			easywindowsize=string2int(windowsiz);
 		}
 		return dawncompress((char *)"bag.tmps",(char*)outf.c_str(),ds,cover,1,mp,(!((getargvcom(argv,argc,(char*)"-F2")!=-1||getargvcom(argv,argc,(char*)"-f2")!=-1)||(getargvcom(argv,argc,(char*)"-F3")!=-1||getargvcom(argv,argc,(char*)"-f3")!=-1))),password,jmsz,string2int(fast),easywindowsize,easywindowsize,(getargvcom(argv,argc,(char*)"-automtf")!=-1)||getargvcom(argv,argc,(char*)"-AUTOMTF")!=-1,debug);
 	}
-	if((getargvcom(argv,argc,(char*)"-d")!=-1||getargvcom(argv,argc,(char*)"-D")!=-1))//½âÑ¹Ëõ
+	if((getargvcom(argv,argc,(char*)"-d")!=-1||getargvcom(argv,argc,(char*)"-D")!=-1))//è§£å‹ç¼©
     {
     	short res=dawndecompress((char *)inf.c_str(),(char*)"tmp.bag",cover,password,debug);
      	if(res!=OK)
      	{
-     		//if(checkfile(Cc "tmp.bag"))
-     		  //system("@del tmp.bag");
+     		if(checkfile(Cc "tmp.bag"))
+     		  system("@del tmp.bag");
      	    return res;
 		}
 		res=unbag(1,(char*)"tmp.bag",1);
@@ -162,7 +162,7 @@ int main(int argc,char *argv[])//dawncompress.exe a.in -c a.out -r100 -pabc
      	  system("@del tmp.bag");
 		return res;
 	}    
-	if((getargvcom(argv,argc,(char*)"-l")!=-1||getargvcom(argv,argc,(char*)"-L")!=-1))//»ñÈ¡ÎÄ¼şÁĞ±í 
+	if((getargvcom(argv,argc,(char*)"-l")!=-1||getargvcom(argv,argc,(char*)"-L")!=-1))//è·å–æ–‡ä»¶åˆ—è¡¨ 
     {
     	vector<string> files;
      	getlist((char*)inf.c_str(),files,password);
@@ -172,16 +172,16 @@ int main(int argc,char *argv[])//dawncompress.exe a.in -c a.out -r100 -pabc
 	}  
 	ull tmp;
 	bool b;          
-    returnif((getargvcom(argv,argc,(char*)"-hc")!=-1||getargvcom(argv,argc,(char*)"-HC")!=-1),huffmanfilecompress((char *)inf.c_str(),(char *)outf.c_str(),tmp,b,cover));//huffmanÑ¹Ëõ 
-    returnif((getargvcom(argv,argc,(char*)"-hd")!=-1||getargvcom(argv,argc,(char*)"-HD")!=-1),huffmanfiledecompress((char *)inf.c_str(),(char *)outf.c_str(),0,cover));//huffman½âÑ¹Ëõ 
-	returnif((getargvcom(argv,argc,(char*)"-opse")!=-1||getargvcom(argv,argc,(char*)"-OPSE")!=-1),opsfileencode((char *)inf.c_str(),(char *)outf.c_str(),password,tmp,cover););//ops¼ÓÃÜ  
-	returnif((getargvcom(argv,argc,(char*)"-opsd")!=-1||getargvcom(argv,argc,(char*)"-OPSD")!=-1),opsfiledecode((char *)inf.c_str(),(char *)outf.c_str(),password,cover));//ops½âÃÜ  
+    returnif((getargvcom(argv,argc,(char*)"-hc")!=-1||getargvcom(argv,argc,(char*)"-HC")!=-1),huffmanfilecompress((char *)inf.c_str(),(char *)outf.c_str(),tmp,b,cover));//huffmanå‹ç¼© 
+    returnif((getargvcom(argv,argc,(char*)"-hd")!=-1||getargvcom(argv,argc,(char*)"-HD")!=-1),huffmanfiledecompress((char *)inf.c_str(),(char *)outf.c_str(),0,cover));//huffmanè§£å‹ç¼© 
+	returnif((getargvcom(argv,argc,(char*)"-opse")!=-1||getargvcom(argv,argc,(char*)"-OPSE")!=-1),opsfileencode((char *)inf.c_str(),(char *)outf.c_str(),password,tmp,cover););//opsåŠ å¯†  
+	returnif((getargvcom(argv,argc,(char*)"-opsd")!=-1||getargvcom(argv,argc,(char*)"-OPSD")!=-1),opsfiledecode((char *)inf.c_str(),(char *)outf.c_str(),password,cover));//opsè§£å¯†  
 	files.erase(files.begin()+files.size()-1);
 	if(files.size())
 	  addkzm(files[files.size()-1],".bag");
-	returnif((getargvcom(argv,argc,(char*)"-bc")!=-1||getargvcom(argv,argc,(char*)"-BC")!=-1),bag(files.size(),files,tmp,cover));//bag´ò°ü 
-	returnif((getargvcom(argv,argc,(char*)"-bd")!=-1||getargvcom(argv,argc,(char*)"-BD")!=-1),unbag(1,(char *)inf.c_str(),cover));//bag½â°ü 
-	if((getargvcom(argv,argc,(char*)"-rlc")!=-1||getargvcom(argv,argc,(char*)"-RLC")!=-1))//crlcÑ¹Ëõ 
+	returnif((getargvcom(argv,argc,(char*)"-bc")!=-1||getargvcom(argv,argc,(char*)"-BC")!=-1),bag(files.size(),files,tmp,cover));//bagæ‰“åŒ… 
+	returnif((getargvcom(argv,argc,(char*)"-bd")!=-1||getargvcom(argv,argc,(char*)"-BD")!=-1),unbag(1,(char *)inf.c_str(),cover));//bagè§£åŒ… 
+	if((getargvcom(argv,argc,(char*)"-rlc")!=-1||getargvcom(argv,argc,(char*)"-RLC")!=-1))//crlcå‹ç¼© 
 	{
 		U I fs=getargvcom(argv,argc,(char*)"-FAST");
 		if(fs==-1) 
@@ -192,9 +192,9 @@ int main(int argc,char *argv[])//dawncompress.exe a.in -c a.out -r100 -pabc
 		fast.erase(0,5);
 		return crlc(Cc inf.c_str(),Cc outf.c_str(),0,string2int(fast)-1,1);
 	}
-	returnif((getargvcom(argv,argc,(char*)"-rld")!=-1||getargvcom(argv,argc,(char*)"-RLD")!=-1),crlc(Cc inf.c_str(),Cc outf.c_str(),1,1,1));//crlc½âÑ¹ 
+	returnif((getargvcom(argv,argc,(char*)"-rld")!=-1||getargvcom(argv,argc,(char*)"-RLD")!=-1),crlc(Cc inf.c_str(),Cc outf.c_str(),1,1,1));//crlcè§£å‹ 
 	
-	returnif((getargvcom(argv,argc,(char*)"-lzwc")!=-1||getargvcom(argv,argc,(char*)"-LZWC")!=-1),lzwcprs(Cc inf.c_str(),Cc outf.c_str(),1));//lzwÑ¹Ëõ 
-	returnif((getargvcom(argv,argc,(char*)"-lzwd")!=-1||getargvcom(argv,argc,(char*)"-LZWD")!=-1),lzwdec(Cc inf.c_str(),Cc outf.c_str(),1));//crlc½âÑ¹ 
-	goto cserr;//Èç¹ûµ½×îºóÁË¶¼Ã»ÓĞ·µ»ØÖ¤Ã÷ÊäÈëµÄÃüÁî²ÎÊı¶¼²»ºÏ·¨ 
+	returnif((getargvcom(argv,argc,(char*)"-lzwc")!=-1||getargvcom(argv,argc,(char*)"-LZWC")!=-1),lzwcprs(Cc inf.c_str(),Cc outf.c_str(),1));//lzwå‹ç¼© 
+	returnif((getargvcom(argv,argc,(char*)"-lzwd")!=-1||getargvcom(argv,argc,(char*)"-LZWD")!=-1),lzwdec(Cc inf.c_str(),Cc outf.c_str(),1));//crlcè§£å‹ 
+	goto cserr;//å¦‚æœåˆ°æœ€åäº†éƒ½æ²¡æœ‰è¿”å›è¯æ˜è¾“å…¥çš„å‘½ä»¤å‚æ•°éƒ½ä¸åˆæ³• 
 } 
